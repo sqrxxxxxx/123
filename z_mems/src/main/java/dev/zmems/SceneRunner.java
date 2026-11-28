@@ -106,7 +106,8 @@ final class SceneRunner implements Listener {
                 default->{}
             }
             if(id.equals("orbital")&&age<=200&&age%20==0){long remain=(200-age)/20;owner.sendActionBar("§cОрбитальный удар: §f"+remain);sound("warning",remain<3?1.4f:1);}
-            if(id.equals("orbital")&&!struck&&age>=200){struck=true;sound("beam",1);world.spawnParticle(Particle.EXPLOSION_EMITTER,center,1,0,0,0,0);double damage=Math.max(0,Math.min(100,p.getConfig().getDouble("scenes.orbital-damage",0)));if(damage>0)for(LivingEntity target:world.getNearbyEntitiesByType(LivingEntity.class,center,5))if(!target.equals(owner)&&!entities.contains(target))target.damage(damage,owner);}
+            if(id.equals("orbital")&&!struck&&age>=200){struck=true;sound("beam",1);world.spawnParticle(Particle.EXPLOSION_EMITTER,center,1,0,0,0,0);double damage=Math.max(0,Math.min(100,p.getConfig().getDouble("scenes.orbital-damage",0)));if(damage>0)for(LivingEntity target:world.getNearbyEntitiesByType(LivingEntity.class,center,5))if(!target.equals(owner)&&!entities.contains(target))target.damage(damage,owner);
+                if(p.getConfig().getBoolean("scenes.orbital-break-blocks",false)){float power=(float)Math.max(0,Math.min(4,p.getConfig().getDouble("scenes.orbital-explosion-power",3)));if(power>0)world.createExplosion(center,power,false,true,owner);}}
             if(age%80==0&&Set.of("city_5g","bell_party","pig_dance","fruit_festival","verity_sugar").contains(id))sound("party",1);
             return true;
         }

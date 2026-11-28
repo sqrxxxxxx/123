@@ -69,21 +69,11 @@ scene_ids=['cow_rift','city_5g','meow_jump','verity_sugar','orbital','bell_party
 font=ImageFont.load_default()
 for i,name in enumerate(scene_ids):
  icon=Image.new('RGBA',(32,32));d=ImageDraw.Draw(icon);color=palette[(i*3+4)%len(palette)];d.rounded_rectangle((2,2,29,29),4,fill='#242033',outline=color,width=2);d.text((6,9),str(i+1),font=font,fill='white',stroke_width=0);add('assets/z_mems/textures/item/token_'+name+'.png',png(icon));add('assets/z_mems/models/item/token_'+name+'.json',{'parent':'minecraft:item/generated','textures':{'layer0':'z_mems:item/token_'+name}});item('token_'+name,'token_'+name)
-# Short original generated cues. No speech/music is extracted from the supplied clips.
+# Original pre-generated cues; using the checked-in bytes makes pack builds reproducible.
 sounds={}
-with tempfile.TemporaryDirectory() as tmp:
- for name in ['spark','portal','warning','beam','party','meow','chime']:
-  rate=22050;sec={'spark':.6,'portal':2.3,'warning':.45,'beam':2.8,'party':4,'meow':.6,'chime':.8}[name];rng=random.Random(name)
-  with wave.open(tmp+'/a.wav','wb') as w:
-   w.setnchannels(1);w.setsampwidth(2);w.setframerate(rate);buf=bytearray()
-   for n in range(int(rate*sec)):
-    t=n/rate;env=min(1,t*15)*min(1,(sec-t)*5)
-    f={'spark':(420+1400*t),'portal':(65+110*t),'warning':660,'beam':(70+45*math.sin(t*6)),'party':(260*2**([0,4,7,12][int(t*4)%4]/12)),'meow':(520+160*math.sin(11*t)),'chime':(800*2**(-t/3))}[name]
-    value=.42*math.sin(2*math.pi*f*t)+(.13*rng.uniform(-1,1) if name in ('spark','beam','portal') else 0)
-    buf.extend(struct.pack('<h',int(32767*env*max(-1,min(1,value)))))
-   w.writeframes(buf)
-  subprocess.run(['ffmpeg','-v','error','-y','-i',tmp+'/a.wav','-c:a','libvorbis','-q:a','3',tmp+'/a.ogg'],check=True)
-  add('assets/z_mems/sounds/'+name+'.ogg',Path(tmp+'/a.ogg').read_bytes());sounds[name]={'sounds':[{'name':'z_mems:'+name,'stream':False}]}
+for name in ['spark','portal','warning','beam','party','meow','chime']:
+ add('assets/z_mems/sounds/'+name+'.ogg',(R/'z_mems/assets/sounds'/str(name+'.ogg')).read_bytes())
+ sounds[name]={'sounds':[{'name':'z_mems:'+name,'stream':False}]}
 add('assets/z_mems/sounds.json',sounds)
 meta=json.loads(data['pack.mcmeta']);meta['pack']['description']='Z_Server_Pack 1.18 • Z_Mems';data['pack.mcmeta']=enc(meta)
 for n,b in base.items():assert n=='pack.mcmeta' or data[n]==b,n

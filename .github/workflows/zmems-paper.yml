@@ -33,6 +33,10 @@ jobs:
           set -o pipefail
           python3 -m pip install pillow
           python3 tools/build_zmems_pack.py 2>&1 | tee z_mems/qa/pack-build.log
+      - name: Disposable Paper gameplay and restart
+        run: |
+          set -o pipefail
+          python3 tools/zmems_native_smoke.py 2>&1 | tee z_mems/qa/native-run.log
       - name: Prepare plugin
         if: success()
         run: cp z_mems/target/Z_Mems-1.0.0.jar dist/Z_Mems-1.0.0.jar
