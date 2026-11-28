@@ -1,12 +1,10 @@
 {
   "status": "PASS",
-  "source_commit": "066abc356e0f8277c7f5f697f5c56d4fa8082613",
+  "source_commit": "daab26fa71636bb613753af8f24462b56e453b76",
   "server_build": 132,
   "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
   "phases": [
     {
-      "status": "PASS",
-      "failure": "",
       "checks": {
         "zmems_enabled": "PASS",
         "ztest_enabled": "PASS",
@@ -19,6 +17,9 @@
         "orb_persistent": "PASS",
         "menu_opens": "PASS",
         "give_permission_enforced": "PASS",
+        "second_orb_given": "PASS",
+        "orbs_stack": "PASS",
+        "stack_spacing": "PASS",
         "scene_cow_rift": "PASS",
         "world_preserved_cow_rift": "PASS",
         "cleanup_cow_rift": "PASS",
@@ -58,9 +59,12 @@
         "cleanup_fruit_festival": "PASS",
         "all_13_scenes": "PASS",
         "orbital_item_given": "PASS",
+        "cancelled_item_respected": "PASS",
         "scene_token_used": "PASS",
         "orbital_countdown_and_impact": "PASS"
       },
+      "failure": "",
+      "status": "PASS",
       "phase": 1
     },
     {
@@ -70,10 +74,12 @@
         "ztest_enabled": "PASS",
         "zlor_enabled": "PASS",
         "zverity_enabled": "PASS",
-        "orb_saved_after_restart": "PASS",
-        "orb_retrieve": "PASS",
-        "orb_returned": "PASS",
-        "orb_model_removed": "PASS"
+        "orbs_saved_after_restart": "PASS",
+        "first_orb_retrieve": "PASS",
+        "first_orb_returned": "PASS",
+        "second_orb_retrieve": "PASS",
+        "second_orb_returned": "PASS",
+        "orb_models_removed": "PASS"
       },
       "phase": 2,
       "status": "PASS"
