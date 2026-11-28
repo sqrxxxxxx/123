@@ -24,7 +24,8 @@ final class SceneRunner implements Listener {
         if(Catalog.scene(id)==null||id.equals("meow_jump"))return false;int limit=Math.max(1,Math.min(12,p.getConfig().getInt("scenes.max-active",3)));
         if(active.size()>=limit){player.sendMessage(MemsPlugin.msg("§eУже запущено максимальное число сцен. Подожди или используй /zmems stop."));return false;}
         Vector dir=player.getLocation().getDirection().setY(0);if(dir.lengthSquared()<.001)dir=new Vector(0,0,1);dir.normalize();
-        Location center=player.getLocation().clone().add(dir.multiply(8));center.setY(player.getLocation().getY()+1.5);center.setYaw(0);center.setPitch(0);
+        double distance=Set.of("cow_rift","pig_dance","fruit_festival").contains(id)?15:11;
+        Location center=player.getLocation().clone().add(dir.multiply(distance));center.setY(player.getLocation().getY()+1.5);center.setYaw(0);center.setPitch(0);
         if(!center.getWorld().isChunkLoaded(center.getBlockX()>>4,center.getBlockZ()>>4)){player.sendMessage(MemsPlugin.msg("§eМесто для сцены не загружено; подойди ближе."));return false;}
         Scene s=new Scene(player,id,center);try{s.setup();active.add(s);player.sendMessage(MemsPlugin.msg("§aСцена: §f"+Catalog.label(id)));return true;}catch(RuntimeException e){s.remove();p.getLogger().warning("Сцена не запущена: "+e.getMessage());player.sendMessage(MemsPlugin.msg("§cНе удалось запустить сцену; проверь журнал сервера."));return false;}
     }
@@ -66,7 +67,7 @@ final class SceneRunner implements Listener {
             sign("§d§lКАМЕРА 5G",0,4.8,-2);
         }
         void setup(){switch(id){
-            case "cow_rift"->{actor("cow_boss",0,6,0,11,0,false);sound("portal",.7f);}
+            case "cow_rift"->{actor("cow_boss",0,4.5,0,9,0,false);sound("portal",.7f);}
             case "city_5g"->{stage();actor("white_cat",0,1,0,3,0,false);sound("party",1);}
             case "verity_sugar"->{for(int y=0;y<10;y++)block(Material.GREEN_CONCRETE,0,y-1,0,.65f,1,.65f);actor("orb_yellow",0,5,3,6,0,false);for(int i=0;i<8;i++)actor(i%2==0?"orb_yellow":"orb_rainbow",Math.cos(i*Math.PI/4)*5,0,Math.sin(i*Math.PI/4)*5,1,i*Math.PI/4,true);sound("party",1);}
             case "orbital"->{sign("§c§lОРБИТАЛЬНЫЙ УДАР",0,2,0);sound("warning",1);}
