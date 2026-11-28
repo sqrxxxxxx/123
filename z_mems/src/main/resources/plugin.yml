@@ -1,0 +1,16 @@
+name: Z_Mems
+version: '1.0.0'
+main: dev.zmems.MemsPlugin
+api-version: '1.21.11'
+description: Мемы, сцены и смайлы для Paper
+commands:
+  zmems:
+    description: Предметы и сцены Z_Mems
+    usage: /zmems help
+permissions:
+  zmems.admin:
+    description: Выдача предметов и управление сценами
+    default: op
+  zmems.use:
+    description: Использование выданных предметов Z_Mems
+    default: true

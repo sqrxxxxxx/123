@@ -1,0 +1,11 @@
+# Все сцены создают временные визуальные сущности, не заменяя блоки мира.
+scenes:
+  max-active: 3
+  cooldown-seconds: 12
+  duration-seconds: 30
+  sound-volume: 0.8
+  # Урон существам в сцене орбитального удара. Блоки мира не разрушаются.
+  orbital-damage: 0.0
+orbs:
+  max-loaded-per-world: 256
+  placement-cooldown-ticks: 4
