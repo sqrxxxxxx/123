@@ -24,7 +24,7 @@ final class OrbManager implements Listener {
         if(!center.getBlock().isPassable()){player.sendMessage(MemsPlugin.msg("§eДля смайла нужно свободное место."));return false;}
         ItemDisplay display=null;
         try{
-            var item=p.make(id);display=center.getWorld().spawn(center,ItemDisplay.class,d->{
+            var item=p.make(id);Location facing=center.clone();var toward=player.getLocation().toVector().subtract(center.toVector()).setY(0);if(toward.lengthSquared()>.001)facing.setDirection(toward);facing.setPitch(0);display=center.getWorld().spawn(facing,ItemDisplay.class,d->{
                 d.setItemStack(item);d.setItemDisplayTransform(ItemDisplay.ItemDisplayTransform.FIXED);d.setPersistent(true);
                 d.getPersistentDataContainer().set(p.kindKey,PersistentDataType.STRING,"orb_display");d.getPersistentDataContainer().set(p.itemKey,PersistentDataType.STRING,id);
                 var t=d.getTransformation();t.getScale().set(1.1f,1.1f,1.1f);d.setTransformation(t);d.setDisplayWidth(2);d.setDisplayHeight(2);

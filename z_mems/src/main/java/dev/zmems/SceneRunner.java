@@ -93,7 +93,7 @@ final class SceneRunner implements Listener {
         boolean step(){
             age+=2;if(!owner.isOnline()||!owner.getWorld().equals(world)||age>maxTicks||!world.isChunkLoaded(center.getBlockX()>>4,center.getBlockZ()>>4))return false;
             for(Actor a:actors){if(!a.display.isValid())continue;Vector off=a.offset.clone();if(a.orbit){double a0=a.phase+age*.025;double radius=Math.max(1,Math.hypot(off.getX(),off.getZ()));off.setX(Math.cos(a0)*radius);off.setZ(Math.sin(a0)*radius);}
-                Location pos=center.clone().add(off).add(0,Math.sin(age*.09+a.phase)*.18,0);pos.setYaw((float)(Math.sin(age*.045+a.phase)*18));a.display.teleport(pos);
+                Location pos=center.clone().add(off).add(0,Math.sin(age*.09+a.phase)*.18,0);Vector toward=owner.getLocation().toVector().subtract(pos.toVector()).setY(0);if(toward.lengthSquared()>.001)pos.setDirection(toward);pos.setPitch(0);pos.setYaw(pos.getYaw()+(float)(Math.sin(age*.045+a.phase)*12));a.display.teleport(pos);
                 if(age%8==0){var t=a.display.getTransformation();t.getLeftRotation().set(new Quaternionf().rotateZ((float)(Math.sin(age*.12+a.phase)*.07)));a.display.setInterpolationDelay(0);a.display.setTransformation(t);}}
             for(int i=0;i<dancers.size();i++){LivingEntity d=dancers.get(i);if(!d.isValid())continue;double a=i*Math.PI*2/Math.max(1,dancers.size())+age*.035;Location at=center.clone().add(Math.cos(a)*4,-1+Math.abs(Math.sin(age*.1+i))*.25,Math.sin(a)*4);at.setYaw((float)Math.toDegrees(-a));d.teleport(at);}
             if(age%8==0)switch(id){
