@@ -43,8 +43,12 @@ public final class MemsPlugin extends JavaPlugin implements Listener,CommandExec
         long until=cooldown.getOrDefault(player.getUniqueId(),0L);if(until>now){player.sendMessage(msg("§eПодожди ещё "+((until-now+999)/1000)+" сек."));return false;}
         if(!scenes.launch(player,id))return false;cooldown.put(player.getUniqueId(),now+seconds*1000);return true;
     }
-    @EventHandler(priority=EventPriority.HIGH,ignoreCancelled=true) public void use(PlayerInteractEvent e){
-        if(e.getHand()!=EquipmentSlot.HAND||!e.getAction().isRightClick())return;String id=id(e.getItem());if(id==null||Catalog.scene(id)==null)return;
+    @EventHandler(priority=EventPriority.HIGH,ignoreCancelled=false) public void use(PlayerInteractEvent e){
+        if(e.getHand()!=EquipmentSlot.HAND||!e.getAction().isRightClick())return;
+        // Vanilla predicts "no block action" for right-click-air and can mark that
+        // event cancelled. Still respect explicit DENY of item use and protected blocks.
+        if(e.useItemInHand()==Event.Result.DENY||(e.getAction()==org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK&&e.isCancelled()))return;
+        String id=id(e.getItem());if(id==null||Catalog.scene(id)==null)return;
         e.setCancelled(true);play(e.getPlayer(),id);
     }
     @EventHandler public void quit(PlayerQuitEvent e){cooldown.remove(e.getPlayer().getUniqueId());scenes.playerQuit(e.getPlayer());}

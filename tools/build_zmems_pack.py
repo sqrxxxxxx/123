@@ -56,6 +56,9 @@ def geometry(name,boxes):
  add('assets/z_mems/models/item/'+name+'.json',model);item(name,name)
 # Complete recognisable bodies rather than recolouring ordinary Minecraft mobs.
 geometry('pig', [([4,1,5],[6.5,5,11],2),([9.5,1,5],[12,5,11],2),([4,5,5],[12,10,11],2),([1,6,6],[4,9,10],2),([12,6,6],[15,9,10],2),([4,10,4],[12,15,12],2),([5,11,3.5],[11,13,4.2],3),([5,13,3.3],[6,14,4.2],5),([10,13,3.3],[11,14,4.2],5),([4,15,4],[12,16,12],7),([4,15.6,4],[12,16,12],6),([4,0,5],[7,1,11],7),([9,0,5],[12,1,11],7)])
+geometry('pig_body', [([4,5,5],[12,10,11],2),([4,10,4],[12,15,12],2),([5,11,3.5],[11,13,4.2],3),([5,13,3.3],[6,14,4.2],5),([10,13,3.3],[11,14,4.2],5),([4,15,4],[12,16,12],7),([4,15.6,4],[12,16,12],6)])
+geometry('pig_arm',[([5,2,5],[11,14,11],2),([5,1,5],[11,3,11],3)])
+geometry('pig_leg',[([5,2,5],[11,14,11],2),([5,1,5],[11,4,11],7)])
 geometry('banana',[([5,2,5],[11,13,11],8),([6,13,6],[10,16,10],8),([6,0,5],[8,2,10],6),([9,0,5],[11,2,10],6),([3,7,6],[5,10,9],5),([11,7,6],[13,10,9],5),([6,10,4.7],[7,11.5,5],7),([9,10,4.7],[10,11.5,5],7),([6,8,4.7],[10,8.5,5],1)])
 geometry('watermelon',[([3,4,3],[13,13,13],10),([3.1,4,5],[13,13,6],11),([3.1,4,9],[13,13,10],11),([4,1,5],[7,4,10],10),([9,1,5],[12,4,10],10),([4,0,5],[7,1,10],6),([9,0,5],[12,1,10],6),([5,10,2.7],[6,11,3],7),([10,10,2.7],[11,11,3],7),([5,7,2.7],[11,8,3],6)])
 geometry('cow_boss',[([4,0,5],[7,6,11],0),([9,0,5],[12,6,11],0),([3,6,4],[13,12,12],1),([1,6,5],[3,12,11],0),([13,6,5],[15,12,11],0),([3,12,4],[13,16,12],1),([4,13,3.7],[6,14,4],6),([10,13,3.7],[12,14,4],6),([6,12,3],[10,13,4],19),([1,14,5],[3,16,7],13),([13,14,5],[15,16,7],13)])
@@ -66,9 +69,35 @@ geometry('muscle',[([3,4,5],[13,9,11],8),([1,5,5],[4,10,11],8),([12,5,5],[15,10,
 geometry('orbital_device',[([2,6,5],[14,10,11],0),([1,7,6],[4,9,10],13),([10,7,4],[14,9,12],6),([5,4,6],[8,7,10],1),([7,7,4.8],[10,9,5],15)])
 geometry('crane',[([6,0,6],[10,12,10],8),([4,11,6],[15,13,10],8),([12,7,7],[13,11,9],7),([11,6,6],[14,7,10],13)])
 scene_ids=['cow_rift','city_5g','meow_jump','verity_sugar','orbital','bell_party','apocalypse','pig_dance','smiley_show','cosmic_cat','skull_cat','city_cranes','fruit_festival']
-font=ImageFont.load_default()
+def ico(name):
+ im=Image.new('RGBA',(32,32));d=ImageDraw.Draw(im)
+ if name=='cow_rift':
+  d.ellipse((3,2,29,30),outline='#ffba47',width=3);d.ellipse((7,6,25,26),fill='#461127');d.polygon([(8,11),(4,7),(9,8),(12,12),(20,12),(23,8),(28,7),(24,12),(24,22),(8,22)],fill='#34212a');d.rectangle((13,15,14,16),fill='#ff404b');d.rectangle((19,15,20,16),fill='#ff404b');d.rectangle((13,19,20,21),fill='#d8a74d')
+ elif name=='city_5g':
+  d.rectangle((3,5,28,27),fill='#302a3b',outline='#fa4cc3',width=2);d.rectangle((8,9,23,20),fill='#334452');d.rectangle((7,22,24,25),fill='#43eafa');d.line((5,25,26,25),fill='#f4ef74',width=1)
+ elif name=='meow_jump':
+  d.polygon([(5,13),(5,6),(10,9),(16,7),(22,9),(27,6),(27,13),(25,23),(7,23)],fill='#a99ba2');d.rectangle((10,14,12,16),fill='#25202c');d.rectangle((20,14,22,16),fill='#25202c');d.rectangle((14,18,18,19),fill='#ed8aa2');d.polygon([(13,28),(16,24),(19,28)],fill='#67dfb5')
+ elif name=='verity_sugar':
+  d.rectangle((5,7,7,29),fill='#53bd25');d.rectangle((9,3,11,29),fill='#8de035');d.ellipse((13,10,30,27),fill='#f8d600',outline='#a87800');d.point((19,16),fill='black');d.point((25,16),fill='black');d.arc((17,14,28,23),0,180,fill='black',width=1)
+ elif name=='orbital':
+  d.ellipse((3,3,28,28),outline='#fa3d54',width=2);d.line((16,0,16,31),fill='#fff4f0');d.line((0,16,31,16),fill='#fff4f0');d.ellipse((12,12,20,20),outline='#ffba55')
+ elif name=='bell_party':
+  d.polygon([(9,12),(11,7),(15,5),(16,3),(18,3),(19,6),(22,8),(24,12),(24,21),(27,23),(5,23),(8,21),(8,12)],fill='#e7b02c',outline='#ffe277');d.ellipse((14,23,18,27),fill='#be7c0c')
+ elif name=='apocalypse':
+  d.ellipse((4,4,27,27),fill='#2d173d',outline='#ef6aff',width=2);d.line((3,16,28,16),fill='#da8cff');d.line((16,3,16,28),fill='#da8cff');d.point((11,10),fill='white');d.point((20,20),fill='white')
+ elif name=='pig_dance':
+  d.rectangle((5,9,26,26),fill='#f4a1be',outline='#be6582');d.rectangle((6,5,25,9),fill='#251923');d.rectangle((6,4,25,5),fill='#d92f48');d.rectangle((10,13,12,15),fill='#131020');d.rectangle((20,13,22,15),fill='#131020');d.rectangle((12,19,20,23),fill='#ce7292');d.point((14,20),fill='#351d2a');d.point((18,20),fill='#351d2a')
+ elif name=='smiley_show':
+  for x,y,c in [(3,9,'#ffdf13'),(11,4,'#ec3ccb'),(19,9,'#2564f5')]:d.ellipse((x,y,x+10,y+10),fill=c,outline='#30272c');d.point((x+3,y+3),fill='black');d.point((x+7,y+3),fill='black');d.arc((x+2,y+3,x+8,y+8),0,180,fill='black')
+ elif name in ('cosmic_cat','skull_cat'):
+  c='#1e1a29' if name=='cosmic_cat' else '#eeeef4';d.polygon([(4,14),(5,5),(11,9),(16,8),(21,9),(27,5),(28,14),(25,25),(7,25)],fill=c,outline='#965ee9');eye='#f6e647' if name=='cosmic_cat' else '#251927';d.rectangle((10,14,12,16),fill=eye);d.rectangle((20,14,22,16),fill=eye);d.rectangle((15,19,17,20),fill='#ef82aa')
+ elif name=='city_cranes':
+  d.rectangle((4,25,28,28),fill='#77747d');d.rectangle((13,5,17,25),fill='#f8c82c');d.rectangle((5,4,27,8),fill='#f8c82c');d.line((23,8,23,19),fill='#e9eaf1');d.rectangle((20,19,26,22),fill='#a4a4ad')
+ else:
+  d.ellipse((3,8,17,24),fill='#36a53b',outline='#17622a');d.arc((4,9,16,23),50,130,fill='#8cea62',width=2);d.polygon([(20,5),(25,3),(27,7),(27,23),(23,28),(19,27),(22,20),(22,9)],fill='#f8d400');d.rectangle((19,25,24,28),fill='#ea3542')
+ return png(im)
 for i,name in enumerate(scene_ids):
- icon=Image.new('RGBA',(32,32));d=ImageDraw.Draw(icon);color=palette[(i*3+4)%len(palette)];d.rounded_rectangle((2,2,29,29),4,fill='#242033',outline=color,width=2);d.text((6,9),str(i+1),font=font,fill='white',stroke_width=0);add('assets/z_mems/textures/item/token_'+name+'.png',png(icon));add('assets/z_mems/models/item/token_'+name+'.json',{'parent':'minecraft:item/generated','textures':{'layer0':'z_mems:item/token_'+name}});item('token_'+name,'token_'+name)
+ add('assets/z_mems/textures/item/token_'+name+'.png',ico(name));add('assets/z_mems/models/item/token_'+name+'.json',{'parent':'minecraft:item/generated','textures':{'layer0':'z_mems:item/token_'+name}});item('token_'+name,'token_'+name)
 # Original pre-generated cues; using the checked-in bytes makes pack builds reproducible.
 sounds={}
 for name in ['spark','portal','warning','beam','party','meow','chime']:

@@ -1,13 +1,13 @@
 {
   "base": "Z_Server_Pack_1.17.zip",
   "old_files_preserved": 1977,
-  "added_files": 96,
-  "sha1": "b7490cee8d5efd3cb4015ec53e1e8b50a4927208",
+  "added_files": 102,
+  "sha1": "ae346d20fcb57f6eb57f42b3fb4f69d110e1fc7f",
   "references": {
-    "json": 1069,
-    "models": 946,
+    "json": 1075,
+    "models": 949,
     "textures": 974,
     "sounds": 20,
-    "items": 107
+    "items": 110
   }
 }
