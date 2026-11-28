@@ -1,9 +1,12 @@
 {
-  "status": "FAIL",
-  "source_commit": "bae2ebd65a3a5704089c67ea512fe424669948a2",
-  "error": "phase 1: {'checks': {'zmems_enabled': 'PASS', 'ztest_enabled': 'PASS', 'zlor_enabled': 'PASS', 'zverity_enabled': 'PASS', 'fresh_world': 'PASS', 'orb_command': 'PASS', 'orb_placed': 'PASS', 'existing_block_not_replaced': 'PASS', 'orb_persistent': 'PASS', 'menu_opens': 'PASS', 'give_permission_enforced': 'PASS', 'scene_cow_rift': 'PASS', 'world_preserved_cow_rift': 'PASS', 'cleanup_cow_rift': 'PASS', 'scene_city_5g': 'PASS', 'world_preserved_city_5g': 'PASS', 'cleanup_city_5g': 'PASS', 'scene_meow_jump': 'PASS', 'scene_verity_sugar': 'PASS', 'world_preserved_verity_sugar': 'PASS', 'cleanup_verity_sugar': 'PASS', 'scene_orbital': 'PASS', 'world_preserved_orbital': 'PASS', 'cleanup_orbital': 'PASS', 'scene_bell_party': 'PASS', 'world_preserved_bell_party': 'PASS', 'cleanup_bell_party': 'PASS', 'scene_apocalypse': 'PASS', 'world_preserved_apocalypse': 'PASS', 'cleanup_apocalypse': 'PASS', 'scene_pig_dance': 'PASS', 'world_preserved_pig_dance': 'PASS', 'cleanup_pig_dance': 'PASS', 'scene_smiley_show': 'PASS', 'world_preserved_smiley_show': 'PASS', 'cleanup_smiley_show': 'PASS', 'scene_cosmic_cat': 'PASS', 'world_preserved_cosmic_cat': 'PASS', 'cleanup_cosmic_cat': 'PASS', 'scene_skull_cat': 'PASS', 'world_preserved_skull_cat': 'PASS', 'cleanup_skull_cat': 'PASS', 'scene_city_cranes': 'PASS', 'world_preserved_city_cranes': 'PASS', 'cleanup_city_cranes': 'PASS', 'scene_fruit_festival': 'PASS', 'world_preserved_fruit_festival': 'PASS', 'cleanup_fruit_festival': 'PASS', 'all_13_scenes': 'PASS', 'orbital_item_given': 'PASS'}, 'failure': 'java.lang.IllegalStateException: scene_token_used', 'status': 'FAIL', 'phase': 1}",
-  "completed_phases": [
+  "status": "PASS",
+  "source_commit": "066abc356e0f8277c7f5f697f5c56d4fa8082613",
+  "server_build": 132,
+  "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+  "phases": [
     {
+      "status": "PASS",
+      "failure": "",
       "checks": {
         "zmems_enabled": "PASS",
         "ztest_enabled": "PASS",
@@ -54,11 +57,26 @@
         "world_preserved_fruit_festival": "PASS",
         "cleanup_fruit_festival": "PASS",
         "all_13_scenes": "PASS",
-        "orbital_item_given": "PASS"
+        "orbital_item_given": "PASS",
+        "scene_token_used": "PASS",
+        "orbital_countdown_and_impact": "PASS"
       },
-      "failure": "java.lang.IllegalStateException: scene_token_used",
-      "status": "FAIL",
       "phase": 1
+    },
+    {
+      "failure": "",
+      "checks": {
+        "zmems_enabled": "PASS",
+        "ztest_enabled": "PASS",
+        "zlor_enabled": "PASS",
+        "zverity_enabled": "PASS",
+        "orb_saved_after_restart": "PASS",
+        "orb_retrieve": "PASS",
+        "orb_returned": "PASS",
+        "orb_model_removed": "PASS"
+      },
+      "phase": 2,
+      "status": "PASS"
     }
   ],
   "visual_client": false
